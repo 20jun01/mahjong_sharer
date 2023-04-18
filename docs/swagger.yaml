@@ -1,0 +1,184 @@
+openapi: 3.0.0
+info:
+  title: mahjong_viewer_backend_v1
+  version: '1.0'
+  description: 麻雀ビューアーのバックエンドAPIです。ユーザーはJWTで取得するためリクエスト本体では投げさせません。
+  contact:
+    name: contact_temp
+    url: contact_temp
+servers:
+  - url: 'http://localhost:80'
+paths:
+  /logout:
+    post:
+      summary: ログアウト
+      operationId: post-logout
+      responses:
+        '204':
+          description: Logout Successfully
+        '401':
+          description: Unauthorized (veryfing account is failed)
+        '403':
+          description: Forbidden(The account may have some problems.)
+  /login:
+    post:
+      summary: ログイン
+      operationId: post-login
+      responses:
+        '204':
+          description: Login Successfully
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ユーザー名
+                  example: ユーザー名
+                password:
+                  type: string
+                  description: パスワード
+              required:
+                - name
+                - password
+  /screenshot:
+    post:
+      summary: スクリーンショットの投稿
+      operationId: post-screenshot
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: file url
+                required:
+                  - name
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: file本体
+              required:
+                - file
+  /me:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                required:
+                  - name
+      operationId: get-me
+  /post/comment:
+    post:
+      summary: 投稿に対してコメントを追加する
+      operationId: post-post-comment
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                  description: comment
+                postId:
+                  type: string
+                  description: postId to comment
+              required:
+                - comment
+                - postId
+  /post/comment/{commentId}:
+    delete:
+      summary: コメントを削除する
+      operationId: delete-post-comment
+      responses:
+        '200':
+          description: OK
+      parameters:
+      - name: "commentId"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+  /post:
+    patch:
+      summary: 投稿の修正
+      operationId: patch-post
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                title:
+                  type: string
+                postId:
+                  type: string
+                description:
+                  type: string
+                paihu_url:
+                  type: string
+  /post/{postId}:
+    delete:
+      summary: 投稿を削除する
+      operationId: delete-post
+      responses:
+        '200':
+          description: OK
+      parameters:
+      - name: "postId"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+  /post/bookmark:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bookmarks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        postId:
+                          type: string
+      operationId: get-post-bookmark
+x-internal: false

@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  app:
+    image: app
+    env_file:
+      - ./.env
+    container_name: app
+    build: .
+    ports:
+      - 80:80
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    networks:
+      - network
+
+  db:
+    image: mysql:8.0.29
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: app
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    ports:
+      - '3306:3306'
+    networks:
+      - network
+
+networks:
+  network:
+    external: true

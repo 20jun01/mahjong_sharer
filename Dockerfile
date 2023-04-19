@@ -1,10 +1,12 @@
-FROM golang:1.20-alpine
+FROM golang:1.19.4-alpine
 
-WORKDIR /app
+WORKDIR  /app
+
+# alpineパッケージのアップデート
+RUN apk upgrade --update && apk --no-cache add git
+RUN go install github.com/cosmtrek/air@latest
+
+# ローカルの現在のディレクトリから、コンテナの作業ディレクトリにコピー
 COPY . .
 
-RUN apk update &&  apk add git
-RUN go get github.com/cosmtrek/air@latest
-
-# air -c [tomlファイル名] // 設定ファイルを指定してair実行(WORKDIRに.air.tomlを配置しておくこと)
-CMD ["air", "-c", "./.air.toml"]
+CMD ["air", "-c", ".air.toml"]

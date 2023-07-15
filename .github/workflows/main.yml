@@ -29,26 +29,38 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        with:
-          path: /home/runner/.local/share/pnpm/store
-          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-
-      - uses: pnpm/action-setup@v2
+
+      - name: Setup pnpm and Cache
+        uses: pnpm/action-setup@v2
         with:
           version: 8
-          run_install: true
+          run_install: false
+        id: pnpm
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.pnpm.outputs.PNPM_CACHE_PATH }}
+          key: ${{ runner.os }}-${{ hashFiles('app/vue/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
       - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'pnpm'
 
+      - name: Install dependencies
+        run: pnpm install
+        working-directory: app/vue
+
       - name: Type Check
-        run: cd app/vue && pnpm type-check
+        run: pnpm type-check
+        working-directory: app/vue
 
       - name: Install Playwright browsers
-        run: cd app/vue && npx playwright install --with-deps
+        run: npx playwright install --with-deps
+        working-directory: app/vue
 
       - name: Run e2e tests
         run: |

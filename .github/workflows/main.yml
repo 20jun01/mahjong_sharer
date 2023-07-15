@@ -30,17 +30,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup pnpm and Cache
+      - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
           run_install: false
-        id: pnpm
 
       - name: Cache pnpm modules
         uses: actions/cache@v2
         with:
-          path: ${{ steps.pnpm.outputs.PNPM_CACHE_PATH }}
+          path: ~/.pnpm-store
           key: ${{ runner.os }}-${{ hashFiles('app/vue/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-

@@ -35,6 +35,7 @@ jobs:
         with:
           version: 8
           run_install: false
+          working-directory: app/vue
 
       - name: Cache pnpm modules
         uses: actions/cache@v2
@@ -43,11 +44,13 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('app/vue/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-
+          working-directory: app/vue
 
       - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'pnpm'
+          working-directory: app/vue
 
       - name: Install dependencies
         run: pnpm install

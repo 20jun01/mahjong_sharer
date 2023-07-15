@@ -29,6 +29,18 @@ services:
       - '3307:3306'
     networks:
       - network
+  
+  vue:
+    build:
+      context: .
+      dockerfile: ./docker/vue/Dockerfile
+    container_name: vue_container
+    tty: true
+    volumes:
+      - ./vue-app/vue-app:/app/vue
+    command: sh -c "cd /app/vue && npm i && npm run dev"
+    ports:
+      - 3000:3000
 
 networks:
   network:

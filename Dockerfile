@@ -1,6 +1,6 @@
-FROM golang:1.19.4-alpine
+FROM golang:1.20.4-alpine
 
-WORKDIR  /app
+WORKDIR  /app/go
 
 # alpineパッケージのアップデート
 RUN apk upgrade --update && apk --no-cache add git

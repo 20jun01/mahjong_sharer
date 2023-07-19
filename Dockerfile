@@ -1,12 +1,13 @@
 FROM golang:1.20.4-alpine
 
-WORKDIR  /app/go
+WORKDIR /app
 
-# alpineパッケージのアップデート
 RUN apk upgrade --update && apk --no-cache add git
-RUN go install github.com/cosmtrek/air@latest
 
-# ローカルの現在のディレクトリから、コンテナの作業ディレクトリにコピー
-COPY . .
+COPY ./app/go .
+
+ENV PATH=$PATH:/go/bin:$HOME/go/bin
+
+RUN go install github.com/cosmtrek/air@latest
 
 CMD ["air", "-c", ".air.toml"]

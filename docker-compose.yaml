@@ -3,14 +3,12 @@ version: "3.8"
 services:
   app:
     image: app
-    env_file:
-      - ./.env
     container_name: app
     build: .
     ports:
       - 80:80
     volumes:
-      - .:/app
+      - ./app/go:/go
     depends_on:
       - db
     networks:
@@ -37,8 +35,8 @@ services:
     container_name: vue_container
     tty: true
     volumes:
-      - ./vue-app/vue-app:/app/vue
-    command: sh -c "cd /app/vue && npm i && npm run dev"
+        - ./app/vue:/vue
+    command: sh -c "cd /vue && pnpm i && pnpm run dev"
     ports:
       - 3000:3000
 

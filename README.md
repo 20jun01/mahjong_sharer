@@ -6,3 +6,5 @@ Using Docker
 ```
 docker-compose up -d
 ```
+
+If you want to up a container, use `docker compose up {container name}`

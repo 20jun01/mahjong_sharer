@@ -56,11 +56,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: golangci-lint
-        uses: reviewdog/action-golangci-lint@v2
+        uses: golangci/golangci-lint-action@v2
         with:
-          level: warning
-          golangci_lint_flags: "--config=.golangci.yml"
-          github_token: ${{ github.token }}
-          filter_mode: nofilter
-          reporter: github-pr-review
           working-directory: app/go

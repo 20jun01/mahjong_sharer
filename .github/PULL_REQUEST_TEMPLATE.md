@@ -1,7 +1,3 @@
----
-title: '[tag] <title>'
-
----
 <!-- Thank you for contributing! -->
 
 ### PRの説明

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	handler "mahjong_backend/pkg/adapter/controller"
 	"mahjong_backend/pkg/infrastructures"

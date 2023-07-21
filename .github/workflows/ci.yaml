@@ -1,6 +1,10 @@
 name: go-ci
 
-on: pull_request
+on: 
+  pull_request:
+  push:
+    branches:
+      - main
 
 jobs:
   # 共通処理

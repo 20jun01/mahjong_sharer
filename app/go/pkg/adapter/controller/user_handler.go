@@ -12,6 +12,6 @@ type UserController interface {
 type UserControllerImpl struct {
 }
 
-func NewUserController(loginUser *echo.Group, db database.Client) *UserControllerImpl {
+func NewUserController(_ *echo.Group, db database.Client) *UserControllerImpl {
 	return &UserControllerImpl{}
 }

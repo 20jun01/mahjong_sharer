@@ -8,7 +8,8 @@ GOGET=$(GOCMD) get
 GOINSTALL=$(GOCMD) install
 GOMOD=$(GOCMD) mod
 GOGEN=$(GOCMD) generate
-GOFMT=$(GOCMD) fmt
+GOFMT=$(GOCMD)fmt
+GOIMPORTS=$(GOCMD)imports
 GOMOCKGEN=$(GOMOCKHANDLER) mockgen
 
 # option variables
@@ -61,7 +62,13 @@ vet:
 	@${GOCMD} vet ./...
 
 fmt:
-	@${GOFMT} ./...
+	@${GOCMD} fmt ./...
+
+gofmt:
+	@${GOFMT} -w .
+
+imports:
+	@${GOIMPORTS} -w .
 
 mockgen:
 	@$(INSTALL_MOCKGEN)
@@ -77,3 +84,9 @@ test_with_junit: mockgen fmt
 
 linter:
 	@golangci-lint run
+
+golang_ci:
+	@golangci-lint run -v
+
+golang_ci_with_docker:
+	@docker run -t --rm -v $(CURDIR):/app -w /app golangci/golangci-lint:v1.53.3 golangci-lint run -v

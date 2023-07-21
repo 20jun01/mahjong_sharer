@@ -4,7 +4,15 @@
 ## How to use
 Using Docker
 ```
-docker-compose up -d
+docker compose -f .\docker-compose.yaml up --build
 ```
 
 If you want to up a container, use `docker compose up {container name}`
+
+### front
+1. up container
+2. access to `localhost:3000`
+
+### back
+1. up container
+2. application is running on `localhost:{port}` (port is defined in .env in root in go directory)

@@ -1,12 +1,22 @@
-FROM golang:1.19.4-alpine
+FROM golang:1.20.4-alpine
 
-WORKDIR  /app
+WORKDIR /app
 
-# alpineパッケージのアップデート
 RUN apk upgrade --update && apk --no-cache add git
+
+# COPY ./app/go .
+
+ENV PATH=$PATH:/go/bin:$HOME/go/bin
+
 RUN go install github.com/cosmtrek/air@latest
 
-# ローカルの現在のディレクトリから、コンテナの作業ディレクトリにコピー
-COPY . .
+COPY ./app/go/go.mod ./app/go/go.sum ./
+RUN go mod download
 
-CMD ["air", "-c", ".air.toml"]
+ENV DOCKERIZE_VERSION v0.6.1
+RUN apk add --no-cache openssl \
+ && wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+ && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+ && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+
+ENTRYPOINT dockerize -timeout 15s -wait tcp://db:3306  air -c .air.toml

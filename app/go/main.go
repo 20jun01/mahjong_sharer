@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"log"
+	handler "mahjong_backend/pkg/adapter/controller"
 	"mahjong_backend/pkg/infrastructures"
 	"mahjong_backend/pkg/infrastructures/database"
-	"mahjong_backend/pkg/adapter/controller"
 	"net/http"
 	"os"
 
@@ -15,8 +14,7 @@ import (
 )
 
 func main() {
-	env := os.Getenv("ENV")
-	if err := godotenv.Load(fmt.Sprintf("./config/%s.env", env)); err != nil {
+	if err := godotenv.Load(".env"); err != nil {
 		log.Fatal("Error loading env file")
 	}
 

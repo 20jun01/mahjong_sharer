@@ -2,7 +2,7 @@
   "name": "vite-ts-tailwind-starter",
   "version": "4.1.0",
   "scripts": {
-    "dev": "cross-env DEBUG=0 vite",
+    "dev": "cross-env DEBUG=0 vite --host",
     "build": "vite build",
     "preview": "vite build && vite preview",
     "start": "pnpm dev & wait-on tcp:3000 -v",

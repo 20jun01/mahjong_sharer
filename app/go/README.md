@@ -17,3 +17,11 @@ or
 ```bash
 make fmt
 ```
+
+### golang ci
+```bash
+make golang_ci
+```
+
+Have you installed the following?
+- [ ] [golangci-lint](https://golangci-lint.run/usage/install/)

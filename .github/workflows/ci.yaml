@@ -63,4 +63,4 @@ jobs:
           github_token: ${{ github.token }}
           filter_mode: nofilter
           reporter: github-pr-review
-        working-directory: app/go
+          working-directory: app/go

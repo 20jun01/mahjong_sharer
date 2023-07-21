@@ -1,0 +1,17 @@
+linters:
+  enable:
+    - decorder
+    - dupl
+    - dupword
+    - exhaustivestruct
+    - exportloopref
+    - funlen
+    - gofmt
+    - goimports
+    - gomnd
+    - gosimple
+    - nilerr
+    - revive
+    - tparallel
+    - unused
+    - whitespace

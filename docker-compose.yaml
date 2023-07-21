@@ -6,7 +6,7 @@ services:
     container_name: app
     build: .
     ports:
-      - 80:80
+      - 8000:8000
     volumes:
       - ./app/go:/app
     depends_on:
@@ -25,10 +25,10 @@ services:
     volumes:
       - ./mysql/init:/docker-entrypoint-initdb.d
     expose:
-      - '3306'
+      - "3306"
     networks:
       - network
-  
+
   vue:
     build:
       context: .
@@ -36,7 +36,7 @@ services:
     container_name: vue_container
     tty: true
     volumes:
-        - ./app/vue:/vue
+      - ./app/vue:/vue
     command: sh -c "cd /vue && pnpm i && pnpm run dev"
     ports:
       - 3000:3000

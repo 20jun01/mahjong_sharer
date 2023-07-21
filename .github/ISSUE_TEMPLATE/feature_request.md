@@ -1,6 +1,6 @@
 ---
 name: "\U00002728 新機能"
-description: 新機能の提案
+about: 新機能の提案
 labels: "feature"
 title: "[FEAT] <title>"
 assignees: "20jun01"

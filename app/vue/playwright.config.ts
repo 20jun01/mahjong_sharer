@@ -1,8 +1,8 @@
-import type { PlaywrightTestConfig } from '@playwright/test'
-import { devices } from '@playwright/test'
+import type { PlaywrightTestConfig } from "@playwright/test";
+import { devices } from "@playwright/test";
 
 const config: PlaywrightTestConfig = {
-  testDir: './tests/e2e',
+  testDir: "./tests/e2e",
   timeout: 30 * 1000,
   expect: {
     /**
@@ -19,38 +19,38 @@ const config: PlaywrightTestConfig = {
   workers: process.env.CI ? 1 : undefined,
   use: {
     actionTimeout: 0,
-    baseURL: 'http://localhost:5173',
-    trace: 'on-first-retry',
+    baseURL: "http://localhost:3000",
+    trace: "on-first-retry",
     // headless: !!process.env.CI,
   },
   webServer: {
-    command: process.env.CI ? 'vite preview --port 5173' : 'vite dev',
-    port: 5173,
+    command: process.env.CI ? "vite preview --port 3000" : "vite dev",
+    port: 3000,
     reuseExistingServer: !process.env.CI,
   },
   projects: [
     {
-      name: 'iPhone 6',
+      name: "iPhone 6",
       use: {
-        browserName: 'webkit',
-        ...devices['iPhone 6'],
+        browserName: "webkit",
+        ...devices["iPhone 6"],
       },
     },
     {
-      name: 'Macbook 11',
+      name: "Macbook 11",
       use: {
-        browserName: 'firefox',
-        ...devices['Macbook 11'],
+        browserName: "firefox",
+        ...devices["Macbook 11"],
       },
     },
     {
-      name: 'Desktop',
+      name: "Desktop",
       use: {
-        browserName: 'chromium',
-        ...devices['Macbook Pro'],
+        browserName: "chromium",
+        ...devices["Macbook Pro"],
       },
     },
   ],
-}
+};
 
-export default config
+export default config;

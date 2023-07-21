@@ -8,7 +8,8 @@ GOGET=$(GOCMD) get
 GOINSTALL=$(GOCMD) install
 GOMOD=$(GOCMD) mod
 GOGEN=$(GOCMD) generate
-GOFMT=$(GOCMD) fmt
+GOFMT=$(GOCMD)fmt
+GOIMPORTS=$(GOCMD)imports
 GOMOCKGEN=$(GOMOCKHANDLER) mockgen
 
 # option variables
@@ -61,7 +62,13 @@ vet:
 	@${GOCMD} vet ./...
 
 fmt:
-	@${GOFMT} ./...
+	@${GOCMD} fmt ./...
+
+gofmt:
+	@${GOFMT} -w .
+
+imports:
+	@${GOIMPORTS} -w .
 
 mockgen:
 	@$(INSTALL_MOCKGEN)

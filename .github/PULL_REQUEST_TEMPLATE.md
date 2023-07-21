@@ -1,8 +1,5 @@
 ---
-name: バグ修正
-about: バグを修正した時のPR
-title: '[FIX] <title>'
-labels: bug
+title: '[tag] <title>'
 
 ---
 <!-- Thank you for contributing! -->
@@ -19,7 +16,7 @@ labels: bug
 
 ### PRの目的 <!-- (put an "X" next to an item) -->
 
-- [x] バグ修正
+- [ ] バグ修正
 - [ ] 新規機能
 - [ ] ドキュメントの更新
 - [ ] その他

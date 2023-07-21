@@ -3,7 +3,6 @@ linters:
     - decorder
     - dupl
     - dupword
-    - exhaustivestruct
     - exportloopref
     - funlen
     - gofmt

@@ -12,6 +12,10 @@ GOFMT=$(GOCMD)fmt
 GOIMPORTS=$(GOCMD)imports
 GOMOCKGEN=$(GOMOCKHANDLER) mockgen
 
+# air
+AIR_COMMAND=air
+AIR_OPTION=-c .air.toml
+
 # option variables
 GOTEST_FLAGS := -v -cover 
 
@@ -58,6 +62,9 @@ build: ${GOFILES}
 run: build
 	@${BINARY}
 
+run_hot:
+	@${AIR_COMMAND} ${AIR_OPTION}
+
 vet:
 	@${GOCMD} vet ./...
 
@@ -74,6 +81,9 @@ mockgen:
 	@$(INSTALL_MOCKGEN)
 	@$(INSTALL_MOCKHANDLER)
 	@${GOMOCKGEN}
+
+sql-gen:
+	@cd db_config; sqlc generate
 
 test: ${GOFILES} mockgen fmt
 	@${GOTEST} ${GOTEST_FLAGS} ./...

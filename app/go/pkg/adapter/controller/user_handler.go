@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"mahjong_backend/pkg/infrastructures/database"
+	"github.com/mahjong_sharer/pkg/infrastructures/database"
 
 	"github.com/labstack/echo"
 )

@@ -1,16 +1,20 @@
-<!-- Thank you for contributing! -->
+<!-- PR作成ありがとうございます！
+ PRのタイトルは、[FIX | FEAT] PRのタイトル としてください
+ 例: [FIX] バグ修正 -->
 
 ### PRの説明
 
-<!-- Please insert your description here and provide especially info about the "what" this PR is solving -->
-
 ### 関連するIssue
-
-<!-- e.g. is there anything you'd like reviewers to focus on? -->
+<!-- 
+- close #1
+- refs #2 
+のようにしてください
+-->
 
 ---
 
-### PRの目的 <!-- (put an "X" next to an item) -->
+### PRの目的
+<!-- 該当の項目を[x]とするか、プレビューからクリックしてください -->
 
 - [ ] バグ修正
 - [ ] 新規機能

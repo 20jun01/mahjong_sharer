@@ -2,9 +2,9 @@ package main
 
 import (
 	"log"
-	handler "mahjong_backend/pkg/adapter/controller"
-	"mahjong_backend/pkg/infrastructures"
-	"mahjong_backend/pkg/infrastructures/database"
+	"github.com/mahjong_sharer/pkg/adapter/controller"
+	"github.com/mahjong_sharer/pkg/infrastructures"
+	"github.com/mahjong_sharer/pkg/infrastructures/database"
 	"net/http"
 	"os"
 

@@ -82,6 +82,9 @@ mockgen:
 	@$(INSTALL_MOCKHANDLER)
 	@${GOMOCKGEN}
 
+sql-gen:
+	@cd db_config; sqlc generate
+
 test: ${GOFILES} mockgen fmt
 	@${GOTEST} ${GOTEST_FLAGS} ./...
 

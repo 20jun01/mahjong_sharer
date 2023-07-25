@@ -12,6 +12,10 @@ GOFMT=$(GOCMD)fmt
 GOIMPORTS=$(GOCMD)imports
 GOMOCKGEN=$(GOMOCKHANDLER) mockgen
 
+# air
+AIR_COMMAND=air
+AIR_OPTION=-c .air.toml
+
 # option variables
 GOTEST_FLAGS := -v -cover 
 
@@ -57,6 +61,9 @@ build: ${GOFILES}
 
 run: build
 	@${BINARY}
+
+run_hot:
+	@${AIR_COMMAND} ${AIR_OPTION}
 
 vet:
 	@${GOCMD} vet ./...

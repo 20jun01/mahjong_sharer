@@ -1,5 +1,5 @@
 ---
-name: "\U00002728 新機能(フロント)"
+name: "\U00002728 新機能(バックエンド)"
 about: 新機能の提案
 labels: ["feature", "backend"]
 title: "[FEAT] <title>"

@@ -1,0 +1,10 @@
+version: "2"
+sql:
+  - schema: "schemas/"
+    queries: 
+    - "queries/"
+    engine: "mysql"
+    gen:
+      go:
+        package: "database_query"
+        out: "../pkg/infrastructures/database/query"

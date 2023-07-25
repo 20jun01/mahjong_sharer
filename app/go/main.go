@@ -2,11 +2,12 @@ package main
 
 import (
 	"log"
-	"github.com/mahjong_sharer/pkg/adapter/controller"
-	"github.com/mahjong_sharer/pkg/infrastructures"
-	"github.com/mahjong_sharer/pkg/infrastructures/database"
 	"net/http"
 	"os"
+
+	handler "github.com/mahjong_sharer/pkg/adapter/controller"
+	"github.com/mahjong_sharer/pkg/infrastructures"
+	"github.com/mahjong_sharer/pkg/infrastructures/database"
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo"

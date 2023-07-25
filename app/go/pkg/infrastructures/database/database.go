@@ -3,7 +3,8 @@ package database
 import (
 	"database/sql"
 	"fmt"
-	"github.com/mahjong_sharer/pkg/infrastructures/database/query"
+
+	database_query "github.com/mahjong_sharer/pkg/infrastructures/database/query"
 )
 
 type Client interface {

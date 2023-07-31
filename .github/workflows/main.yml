@@ -75,7 +75,7 @@ jobs:
         working-directory: app/vue
 
       - name: Coverage
-        uses: davelosert/vitest-coverage-report-action@v2.1.0
+        uses: davelosert/vitest-coverage-report-action@v2.1.1
         with:
           working-directory: app/vue
         if: ${{ always() }}

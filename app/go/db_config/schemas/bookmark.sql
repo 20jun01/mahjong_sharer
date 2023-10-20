@@ -1,7 +1,6 @@
-CREATE TABLE `user` (
-    `id` char(40) NOT NULL,
-    `name` varchar(255) NOT NULL,
-    `password_hash` varchar(255) NOT NULL,
+CREATE TABLE `bookmark` (
+    `post_id` char(40) NOT NULL,
+    `user_id` char(40) NOT NULL,
     `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)

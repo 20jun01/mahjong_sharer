@@ -3,15 +3,11 @@ package database
 import (
 	"database/sql"
 	"fmt"
-
-	database_query "github.com/mahjong_sharer/pkg/infrastructures/database/query"
 )
 
 type Client interface {
 	BeginTx() (*sql.Tx, error)
 	Close() error
-
-	GetUserQueries() database_query.UserQueryInterface
 }
 
 type ClientImpl struct {
@@ -30,9 +26,4 @@ func (d *ClientImpl) BeginTx() (*sql.Tx, error) {
 func (d *ClientImpl) Close() error {
 	fmt.Println("Not implemented.")
 	return nil
-}
-
-// TODO: if tx is not nil, use tx
-func (d *ClientImpl) GetUserQueries() database_query.UserQueryInterface {
-	return database_query.New(d.db)
 }

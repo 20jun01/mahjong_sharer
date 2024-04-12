@@ -1,11 +1,12 @@
 module github.com/mahjong_sharer
 
-go 1.20
+go 1.22
 
 require (
 	github.com/joho/godotenv v1.5.1
 	github.com/labstack/echo v3.3.10+incompatible
 	github.com/stretchr/testify v1.9.0
+	gorm.io/gorm v1.25.4
 )
 
 require (
@@ -13,12 +14,10 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	golang.org/x/time v0.3.0 // indirect
-	gorm.io/gorm v1.25.4 // indirect
 )
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/go-gormigrate/gormigrate/v2 v2.1.1
 	github.com/go-sql-driver/mysql v1.7.1
 	github.com/labstack/echo/v4 v4.11.2

@@ -35,7 +35,7 @@ func NewGormDB() (*gorm.DB, error) {
 	}
 
 	db.SetMaxIdleConns(MAX_IDLE_CONNECTIONS)
-	db.SetMaxOpenConns(MAX_IDLE_CONNECTIONS * 2)
+	db.SetMaxOpenConns(MAX_OPEN_CONNECTIONS)
 	if err := initDB(engine); err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func newGormConfig() *gorm.Config {
 		Logger: logger.New(
 			log.New(os.Stdout, "\r\n", log.LstdFlags),
 			logger.Config{
-				SlowThreshold:             200 * time.Millisecond,
+				SlowThreshold:             THRESHOLD_MILLISECOND * time.Millisecond,
 				LogLevel:                  logger.Warn,
 				IgnoreRecordNotFoundError: true,
 				Colorful:                  true,

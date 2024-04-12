@@ -11,7 +11,7 @@ type Client interface {
 }
 
 type ClientImpl struct {
-	db *sql.DB
+	_ *sql.DB
 }
 
 func NewClientImpl() *ClientImpl {

@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/mahjong_sharer/pkg/router"
 	"github.com/mahjong_sharer/pkg/infrastructures"
+	"github.com/mahjong_sharer/pkg/router"
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"

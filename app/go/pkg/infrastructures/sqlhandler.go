@@ -6,12 +6,18 @@ import (
 	"os"
 	"time"
 
+	sqldriver "github.com/go-sql-driver/mysql"
 	"github.com/mahjong_sharer/pkg/infrastructures/migration"
 	"github.com/mahjong_sharer/pkg/util"
-	sqldriver "github.com/go-sql-driver/mysql"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
+)
+
+const (
+	MAX_IDLE_CONNECTIONS  = 2
+	MAX_OPEN_CONNECTIONS  = 16
+	THRESHOLD_MILLISECOND = 200
 )
 
 func NewGormDB() (*gorm.DB, error) {
@@ -28,8 +34,8 @@ func NewGormDB() (*gorm.DB, error) {
 		return nil, err
 	}
 
-	db.SetMaxIdleConns(2)
-	db.SetMaxOpenConns(16)
+	db.SetMaxIdleConns(MAX_IDLE_CONNECTIONS)
+	db.SetMaxOpenConns(MAX_IDLE_CONNECTIONS * 2)
 	if err := initDB(engine); err != nil {
 		return nil, err
 	}

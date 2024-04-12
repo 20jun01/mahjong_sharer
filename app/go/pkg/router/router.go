@@ -5,10 +5,8 @@ import "github.com/labstack/echo/v4"
 type API struct {
 }
 
-func NewAPI(
-) API {
-	return API{
-	}
+func NewAPI() API {
+	return API{}
 }
 
 func SetUpRouter(e *echo.Echo, api API) {
@@ -23,7 +21,6 @@ func SetUpRouter(e *echo.Echo, api API) {
 	e.Use(nil)
 
 	e.GET("/me", nil)
-
 
 	e.Logger.Fatal(e.Start(":8080"))
 }

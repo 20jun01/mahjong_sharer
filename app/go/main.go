@@ -5,13 +5,12 @@ import (
 	"net/http"
 	"os"
 
-	handler "github.com/mahjong_sharer/pkg/adapter/controller"
 	"github.com/mahjong_sharer/pkg/infrastructures"
-	"github.com/mahjong_sharer/pkg/infrastructures/database"
+	"github.com/mahjong_sharer/pkg/router"
 
 	"github.com/joho/godotenv"
-	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
@@ -28,34 +27,30 @@ func main() {
 	recoverWithConfig := middleware.RecoverWithConfig(middleware.RecoverConfig{})
 	e.Use(recoverWithConfig)
 
-	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins:     []string{"*"},
-		AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAuthorization, "X-Authorization"},
-		AllowCredentials: true,
-		AllowMethods:     []string{http.MethodGet, http.MethodPut, http.MethodPost, http.MethodDelete},
-	}))
+	e.Use(middleware.CORSWithConfig(
+		middleware.CORSConfig{
+			AllowMethods: []string{
+				http.MethodGet,
+				http.MethodPut,
+				http.MethodPost,
+				http.MethodDelete,
+			},
+			AllowHeaders: []string{
+				"*",
+			},
+			AllowOrigins: []string{
+				"*",
+			},
+		}))
 
-	// ヘルスチェック
-	e.GET("/health", func(c echo.Context) error {
-		return c.JSON(http.StatusOK, "")
-	})
+	_, err := infrastructures.NewGormDB()
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	authMiddleware := infrastructures.NewAuthMiddleware()
-	loginUsers := e.Group("", authMiddleware.LoginMiddleware)
-	_ = loginUsers.Group("/admin", authMiddleware.AdminMiddleware)
+	api := router.NewAPI()
 
-	db := database.NewClientImpl()
-	defer func(db *database.ClientImpl) {
-		err := db.Close()
-		if err != nil {
-			log.Fatal(err)
-		}
-	}(db)
-
-	handler.NewUserController(loginUsers, db)
-
-	port := os.Getenv("PORT")
-	e.Logger.Fatal(e.Start(":" + port))
+	router.SetUpRouter(e, api)
 }
 
 func healthSkipper(c echo.Context) bool {

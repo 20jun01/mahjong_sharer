@@ -18,7 +18,7 @@ require (
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/go-gormigrate/gormigrate/v2 v2.1.1
+	github.com/go-gormigrate/gormigrate/v2 v2.1.2
 	github.com/go-sql-driver/mysql v1.7.1
 	github.com/labstack/echo/v4 v4.12.0
 	github.com/labstack/gommon v0.4.2 // indirect
